@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Set up gcloud CLI
-      uses: google-github-actions/setup-gcloud@master
+      uses: google-github-actions/setup-gcloud@main
       with:
         project_id: my-custom-project-379808
         service_account_key: ${{ secrets.GCP_SA_KEY }}
