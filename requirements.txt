@@ -1,2 +1,0 @@
-# An example requirements file, add your dependencies below
-sampleproject==2.0.0
