@@ -4,11 +4,18 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+    inputs:
+      source_folder:
+        description: 'The source folder for the Cloud Function'
+        required: true
+      entry_point:
+        description: 'Entry Point'
+        required: true
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up gcloud CLI
@@ -21,7 +28,7 @@ jobs:
       env:
         USER_NAME: ${{ github.repository_owner }}
       run: |
-        gcloud functions deploy ${USER_NAME}-function --region us-central1 --runtime python311 --trigger-http --allow-unauthenticated
+        gcloud functions deploy ${USER_NAME}-function --region us-central1 --runtime python311 --trigger-http --allow-unauthenticated --entry-point ${{ github.event.inputs.entry_point }} --source ${{ github.event.inputs.source_folder }}
 
     - name: Deploy to Cloud Function
       env:
