@@ -21,4 +21,4 @@ def hello_http(request):
         name = request_args['name']
     else:
         name = 'World'
-    return 'hello good {}!'.format(escape(name))
+    return 'hello good morning {}!'.format(escape(name))
